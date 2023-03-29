@@ -38,8 +38,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v0.3
-          release_name: qesend v0.3
+          tag_name: v0.4
+          release_name: qesend v0.4
           draft: false
           prerelease: false
           body: |
@@ -57,6 +57,6 @@ jobs:
           asset_name: qesent_install.exe
           asset_content_type: application/octet-stream
 
-      - name: Get SHA2-256SUMS for aadegui.exe
+      - name: Get SHA2-256SUMS for qesent_install.exe
         id: sha2_file
-        run: echo "sha2_windows=$((Get-FileHash dist\aadegui.exe -Algorithm SHA256).Hash.ToLower())" >> $GITHUB_OUTPUT
+        run: echo "sha2_windows=$((Get-FileHash qesent_install.exe -Algorithm SHA256).Hash.ToLower())" >> $GITHUB_OUTPUT
