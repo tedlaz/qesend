@@ -23,7 +23,7 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputDir=.
-OutputBaseFilename=qesent_install
+OutputBaseFilename=qesend_install
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

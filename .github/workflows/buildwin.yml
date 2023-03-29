@@ -29,8 +29,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: qesent_install
-          path: qesent_install.exe
+          name: qesend_install
+          path: qesend_install.exe
 
       - name: Create Release
         id: create_release
@@ -38,8 +38,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}"
-          release_name: qesend ${{ github.ref_name }}"
+          tag_name: ${{ github.ref_name }}
+          release_name: qesend ${{ github.ref_name }}
           draft: false
           prerelease: false
           body: |
@@ -53,10 +53,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: qesent_install.exe
-          asset_name: qesent_install.exe
+          asset_path: qesend_install.exe
+          asset_name: qesend_install.exe
           asset_content_type: application/octet-stream
 
-      - name: Get SHA2-256SUMS for qesent_install.exe
+      - name: Get SHA2-256SUMS for qesend_install.exe
         id: sha2_file
-        run: echo "sha2_windows=$((Get-FileHash qesent_install.exe -Algorithm SHA256).Hash.ToLower())" >> $GITHUB_OUTPUT
+        run: echo "sha2_windows=$((Get-FileHash qesend_install.exe -Algorithm SHA256).Hash.ToLower())" >> $GITHUB_OUTPUT
