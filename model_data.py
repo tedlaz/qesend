@@ -14,5 +14,4 @@ class ModelData:
     headers: list[str]
     rows: list
     aligns: list[int]
-    isgrnum: list[int]
     typos: list[int]

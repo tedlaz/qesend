@@ -1,10 +1,13 @@
 # from PySide6 import QtWidgets
+import os
+
 from PyQt6 import QtWidgets
+from PyQt6.QtCore import QStandardPaths
 
 from extract_data import model_data
 from model import Model
 from ui_main import Ui_MainWindow
-from utils import data2csv, data2xlsx
+from utils import data2xlsx
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -28,8 +31,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_csv_anal.clicked.connect(self.anal2csv)
 
     def save_file_dialog(self, default_file_name):
+        desktop = QStandardPaths.StandardLocation.DesktopLocation
+        wde = QStandardPaths.writableLocation(desktop)
+        npath = os.path.join(wde, default_file_name)
         filename, _ = QtWidgets.QFileDialog.getSaveFileName(
-            self, "Αποθήκευση", default_file_name, "Excel Files (*.xlsx)"
+            self, "Αποθήκευση", npath, "Excel Files (*.xlsx)"
         )
         return filename
 

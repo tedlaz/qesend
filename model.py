@@ -2,7 +2,7 @@
 from PyQt6.QtCore import QAbstractTableModel, Qt
 
 from model_data import ModelData
-from utils import grnum
+from utils import date_iso2gr, grnum
 
 QTALIGN = {
     1: int(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
@@ -10,9 +10,12 @@ QTALIGN = {
     3: int(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
 }
 
+# 1=str, 2=integer, 3=decimal, 4=date
 QTDISPLAY = {
-    0: str,
-    1: grnum,
+    1: str,
+    2: str,
+    3: grnum,
+    4: date_iso2gr,
 }
 
 
@@ -40,7 +43,7 @@ class Model(QAbstractTableModel):
             return None
 
         if role == Qt.ItemDataRole.DisplayRole:
-            func = QTDISPLAY.get(self.mdata.isgrnum[index.column()], 0)
+            func = QTDISPLAY.get(self.mdata.typos[index.column()], 1)
             return func(self.mdata.rows[index.row()][index.column()])
 
         if role == Qt.ItemDataRole.TextAlignmentRole:

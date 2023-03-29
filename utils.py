@@ -20,6 +20,11 @@ def grnum(num):
     return f"{num:,.2f}".replace(",", "|").replace(".", ",").replace("|", ".")
 
 
+def date_iso2gr(isodate: str) -> str:
+    year, month, day = isodate.split("-")
+    return f"{day}/{month}/{year}"
+
+
 def data2xlsx(data: ModelData, filename: str):
     wb1 = Workbook()
     fbold = Font(bold=True)
