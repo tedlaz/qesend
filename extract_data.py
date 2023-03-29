@@ -131,6 +131,7 @@ def model_data(htmlfile):
     ]
     align = [1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     grnum = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    typo1 = [1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     zdata_lines = edit_lines(read_html(htmlfile))
     etisia, trim, mina = calc_totals(zdata_lines)
     etisialist = [[key, *val] for key, val in etisia.items()]
@@ -140,9 +141,9 @@ def model_data(htmlfile):
     labels_trimino = ["Τρίμηνο", *dnames]
     labels_minas = ["Μήνας", *dnames]
 
-    etisiadata = ModelData(labels_etos, etisialist, align, grnum)
-    trimdata = ModelData(labels_trimino, trimlist, align, grnum)
-    minaadata = ModelData(labels_minas, minalist, align, grnum)
+    etisiadata = ModelData(labels_etos, etisialist, align, grnum, typo1)
+    trimdata = ModelData(labels_trimino, trimlist, align, grnum, typo1)
+    minaadata = ModelData(labels_minas, minalist, align, grnum, typo1)
     anl = [
         [
             i.date,
@@ -162,7 +163,8 @@ def model_data(htmlfile):
         for i in zdata_lines
     ]
     HEAD2 = ["Ημ/νία", "Ζ", *dnames]
+    typo2 = [4, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     align2 = [1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     grnum2 = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    analytika = ModelData(HEAD2, anl, align2, grnum2)
+    analytika = ModelData(HEAD2, anl, align2, grnum2, typo2)
     return etisiadata, trimdata, minaadata, analytika

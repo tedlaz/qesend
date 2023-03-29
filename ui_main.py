@@ -106,13 +106,13 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.btn_csv_etos.setText(_translate("MainWindow", "Εξαγωγή σε csv"))
+        self.btn_csv_etos.setText(_translate("MainWindow", "Εξαγωγή σε excel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_etos), _translate("MainWindow", "Ετήσια"))
-        self.btn_csv_trimino.setText(_translate("MainWindow", "Εξαγωγή σε csv"))
+        self.btn_csv_trimino.setText(_translate("MainWindow", "Εξαγωγή σε excel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_trimino), _translate("MainWindow", "Τριμηνιαία"))
-        self.btn_csv_minas.setText(_translate("MainWindow", "Εξαγωγή σε csv"))
+        self.btn_csv_minas.setText(_translate("MainWindow", "Εξαγωγή σε excel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_minas), _translate("MainWindow", "Μηνιαία"))
-        self.btn_csv_anal.setText(_translate("MainWindow", "Εξαγωγή σε csv"))
+        self.btn_csv_anal.setText(_translate("MainWindow", "Εξαγωγή σε excel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Αναλυτικά"))
         self.menufile.setTitle(_translate("MainWindow", "file"))
         self.actionopen.setText(_translate("MainWindow", "open"))

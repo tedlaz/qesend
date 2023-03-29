@@ -10,12 +10,10 @@ if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
     app_path = sys.executable
     frozen_dir_name = os.path.dirname(app_path)
     # YOUTUBE_DL_EXE_PATH = os.path.join(frozen_dir_name, 'youtube-dl.exe')
-    # FFMPEG_PATH = os.path.join(frozen_dir_name, 'ffmpeg.exe')
     INI_PATH = os.path.join(frozen_dir_name, INIFILE)
 else:
     app_path = os.path.dirname(__file__)
     # YOUTUBE_DL_EXE_PATH = os.path.join(app_path, 'external', 'youtube-dl.exe')
-    # FFMPEG_PATH = os.path.join(app_path, 'external', 'ffmpeg.exe')
     INI_PATH = os.path.join(app_path, INIFILE)
 
 initial_ini = """[General]

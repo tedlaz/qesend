@@ -46,7 +46,7 @@
           <item>
            <widget class="QPushButton" name="btn_csv_etos">
             <property name="text">
-             <string>Εξαγωγή σε csv</string>
+             <string>Εξαγωγή σε excel</string>
             </property>
            </widget>
           </item>
@@ -80,7 +80,7 @@
           <item>
            <widget class="QPushButton" name="btn_csv_trimino">
             <property name="text">
-             <string>Εξαγωγή σε csv</string>
+             <string>Εξαγωγή σε excel</string>
             </property>
            </widget>
           </item>
@@ -114,7 +114,7 @@
           <item>
            <widget class="QPushButton" name="btn_csv_minas">
             <property name="text">
-             <string>Εξαγωγή σε csv</string>
+             <string>Εξαγωγή σε excel</string>
             </property>
            </widget>
           </item>
@@ -148,7 +148,7 @@
           <item>
            <widget class="QPushButton" name="btn_csv_anal">
             <property name="text">
-             <string>Εξαγωγή σε csv</string>
+             <string>Εξαγωγή σε excel</string>
             </property>
            </widget>
           </item>

@@ -4,7 +4,7 @@ from PyQt6 import QtWidgets
 from extract_data import model_data
 from model import Model
 from ui_main import Ui_MainWindow
-from utils import data2csv
+from utils import data2csv, data2xlsx
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -27,22 +27,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_csv_minas.clicked.connect(self.minas2csv)
         self.btn_csv_anal.clicked.connect(self.anal2csv)
 
+    def save_file_dialog(self, default_file_name):
+        filename, _ = QtWidgets.QFileDialog.getSaveFileName(
+            self, "Αποθήκευση", default_file_name, "Excel Files (*.xlsx)"
+        )
+        return filename
+
     def get_ini_sep_enc(self):
         separator = self.ini.value("csv_separator", defaultValue=",")
         encoding = self.ini.value("csv_encoding", defaultValue="utf-8")
         return separator, encoding
 
     def etos2csv(self):
-        data2csv(self.etos_model.mdata, "etos.csv", *self.get_ini_sep_enc())
+        fname = self.save_file_dialog("etos.xlsx")
+        if fname:
+            data2xlsx(self.etos_model.mdata, fname)
 
     def trimino2csv(self):
-        data2csv(self.trim_model.mdata, "trimino.csv", *self.get_ini_sep_enc())
+        fname = self.save_file_dialog("trimino.xlsx")
+        if fname:
+            data2xlsx(self.trim_model.mdata, fname)
 
     def minas2csv(self):
-        data2csv(self.mina_model.mdata, "minas.csv", *self.get_ini_sep_enc())
+        fname = self.save_file_dialog("minas.xlsx")
+        if fname:
+            data2xlsx(self.mina_model.mdata, fname)
 
     def anal2csv(self):
-        data2csv(self.anal_model.mdata, "analytika.csv", *self.get_ini_sep_enc())
+        fname = self.save_file_dialog("analytika.xlsx")
+        if fname:
+            data2xlsx(self.anal_model.mdata, fname)
 
     def open(self):
         # fnam, _ = qw.QFileDialog.getOpenFileName(self, "Open", self.fnam, "")
