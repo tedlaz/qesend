@@ -22,12 +22,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("qesend")
         self.setAcceptDrops(True)
+
         # members
         self.etos_model = None
         self.trim_model = None
         self.mina_model = None
         self.anal_model = None
-        # end members
+        # #######
+
         self.make_connections()
 
     def make_connections(self):

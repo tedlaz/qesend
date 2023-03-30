@@ -46,6 +46,8 @@ jobs:
             This is a pre-release of qesend.
             It includes the following features:
             - Reads esend.html files
+            - Aggregates data, by month, quarter, year
+            - Exports data to excel
       - name: Publish Binary Release
         id: upload-release-binary
         uses: actions/upload-release-asset@v1
