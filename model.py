@@ -24,6 +24,10 @@ class Model(QAbstractTableModel):
         super().__init__(parent)
         self.mdata = model_data
 
+    @property
+    def size(self):
+        return len(self.mdata.rows)
+
     def rowCount(self, parent):
         return len(self.mdata.rows)
 

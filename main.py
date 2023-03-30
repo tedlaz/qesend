@@ -10,17 +10,24 @@ from ui_main import Ui_MainWindow
 from utils import data2xlsx
 
 
+def desktop_file_path(file_name):
+    desktop = QStandardPaths.StandardLocation.DesktopLocation
+    wde = QStandardPaths.writableLocation(desktop)
+    return os.path.join(wde, file_name)
+
+
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self, ini):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle("qesend")
         self.setAcceptDrops(True)
-        self.ini = ini
-        self.setWindowTitle(self.ini.value("app_name", defaultValue="Δοκιμή"))
+        # members
         self.etos_model = None
         self.trim_model = None
         self.mina_model = None
         self.anal_model = None
+        # end members
         self.make_connections()
 
     def make_connections(self):
@@ -30,38 +37,29 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_csv_minas.clicked.connect(self.minas2csv)
         self.btn_csv_anal.clicked.connect(self.anal2csv)
 
-    def save_file_dialog(self, default_file_name):
-        desktop = QStandardPaths.StandardLocation.DesktopLocation
-        wde = QStandardPaths.writableLocation(desktop)
-        npath = os.path.join(wde, default_file_name)
+    def save_excel_file_dialog(self, default_file_name):
         filename, _ = QtWidgets.QFileDialog.getSaveFileName(
-            self, "Αποθήκευση", npath, "Excel Files (*.xlsx)"
+            self,
+            "Αποθήκευση",
+            desktop_file_path(default_file_name),
+            "Excel Files (*.xlsx)",
         )
         return filename
 
-    def get_ini_sep_enc(self):
-        separator = self.ini.value("csv_separator", defaultValue=",")
-        encoding = self.ini.value("csv_encoding", defaultValue="utf-8")
-        return separator, encoding
-
     def etos2csv(self):
-        fname = self.save_file_dialog("etos.xlsx")
-        if fname:
+        if fname := self.save_excel_file_dialog("etos.xlsx"):
             data2xlsx(self.etos_model.mdata, fname)
 
     def trimino2csv(self):
-        fname = self.save_file_dialog("trimino.xlsx")
-        if fname:
+        if fname := self.save_excel_file_dialog("trimino.xlsx"):
             data2xlsx(self.trim_model.mdata, fname)
 
     def minas2csv(self):
-        fname = self.save_file_dialog("minas.xlsx")
-        if fname:
+        if fname := self.save_excel_file_dialog("minas.xlsx"):
             data2xlsx(self.mina_model.mdata, fname)
 
     def anal2csv(self):
-        fname = self.save_file_dialog("analytika.xlsx")
-        if fname:
+        if fname := self.save_excel_file_dialog("analytika.xlsx"):
             data2xlsx(self.anal_model.mdata, fname)
 
     def open(self):
@@ -83,6 +81,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.table_trimino.setModel(self.trim_model)
         self.table_minas.setModel(self.mina_model)
         self.table_anal.setModel(self.anal_model)
+
+        self.set_state()
+
+    def set_state(self):
+        if self.etos_model.size:
+            self.enable_excel_buttons()
+        else:
+            self.disable_excel_buttons()
+
+    def enable_excel_buttons(self):
+        self.btn_csv_anal.setEnabled(True)
+        self.btn_csv_etos.setEnabled(True)
+        self.btn_csv_minas.setEnabled(True)
+        self.btn_csv_trimino.setEnabled(True)
+
+    def disable_excel_buttons(self):
+        self.btn_csv_anal.setEnabled(False)
+        self.btn_csv_etos.setEnabled(False)
+        self.btn_csv_minas.setEnabled(False)
+        self.btn_csv_trimino.setEnabled(False)
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasText():
